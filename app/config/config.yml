@@ -4,19 +4,20 @@ imports:
     - { resource: security.yml }
 
 framework:
-    secret:          %secret%
+    secret: %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
+    form: ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation: { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
+    default_locale: "%locale%"
+    translator: { fallback: %locale% }
     trusted_proxies: ~
-    session:         ~
-    fragments:       ~
+    session: ~
+    fragments: ~
     http_method_override: true
 
 # Twig Configuration
