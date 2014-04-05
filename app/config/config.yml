@@ -46,7 +46,11 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
+        entity_managers:
+            default:
+                mappings:
+                    BicloOAuth2ServerBundle: ~
+                    BicloUserBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -55,3 +59,10 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Biclo\Bundle\OAuth2ServerBundle\Entity\Client
+    access_token_class:  Biclo\Bundle\OAuth2ServerBundle\Entity\AccessToken
+    refresh_token_class: Biclo\Bundle\OAuth2ServerBundle\Entity\RefreshToken
+    auth_code_class:     Biclo\Bundle\OAuth2ServerBundle\Entity\AuthCode
