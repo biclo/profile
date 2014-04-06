@@ -21,7 +21,7 @@ class Client extends BaseClient
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string")
      */
     protected $name;  
 
@@ -31,17 +31,17 @@ class Client extends BaseClient
     protected $randomId;
 
     /**
-     * @ORM\Column(type="array", name="redirect_uris", nullable=false)
+     * @ORM\Column(type="array", name="redirect_uris")
      */
     protected $redirectUris;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string")
      */
     protected $secret;
 
     /**
-     * @ORM\Column(type="array", name="allowed_grant_types", nullable=false)
+     * @ORM\Column(type="array", name="allowed_grant_types")
      */
     protected $allowedGrantTypes;
 

@@ -66,3 +66,6 @@ fos_oauth_server:
     access_token_class:  Biclo\Bundle\OAuth2ServerBundle\Entity\AccessToken
     refresh_token_class: Biclo\Bundle\OAuth2ServerBundle\Entity\RefreshToken
     auth_code_class:     Biclo\Bundle\OAuth2ServerBundle\Entity\AuthCode
+    service:
+        options:
+            supported_scopes: email

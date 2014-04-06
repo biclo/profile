@@ -55,6 +55,11 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->email;
+    }
+
     public function getId()
     {
         return $this->id;

@@ -35,8 +35,8 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface,
 
         $client = $clientManager->createClient();
         $client->setName('www');
-        $client->setRedirectUris(array('http://biclo.fr'));
-        $client->setAllowedGrantTypes(array('authorization_code'));
+        $client->setRedirectUris(array('http://dev.biclo.fr'));
+        $client->setAllowedGrantTypes(array('token', 'authorization_code'));
 
         $clientManager->updateClient($client);
     }

@@ -37,7 +37,7 @@ class AuthCode extends BaseAuthCode
     protected $token;
 
     /**
-     * @ORM\Column(type="string", name="redirect_uris")
+     * @ORM\Column(type="string", name="redirect_uri")
      */
     protected $redirectUri;
 
