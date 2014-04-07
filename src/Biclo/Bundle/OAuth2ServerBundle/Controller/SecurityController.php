@@ -60,4 +60,9 @@ class SecurityController extends Controller
     public function loginCheckAction(Request $request)
     {
     }
+
+    public function revokeAction(Request $request)
+    {
+
+    }
 }

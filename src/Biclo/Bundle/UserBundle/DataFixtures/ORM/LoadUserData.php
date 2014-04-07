@@ -35,7 +35,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         $users = array();
 
-        $julien = new User('julien@biclo.fr', 'julien');
+        $julien = new User();
+        $julien->setEmail('julien@biclo.fr');
+        $julien->setUsername('julien');
         $this->setPassword($julien, 'julien');
         $users[] = $julien;
 
