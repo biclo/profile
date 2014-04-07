@@ -25,3 +25,7 @@ biclo_oauth2_server_security_login:
 biclo_oauth2_server_security_login_check:
     pattern: /oauth/v2/auth_login_check
     defaults: { _controller: "BicloOAuth2ServerBundle:Security:loginCheck" }
+
+biclo_oauth2_server_security_register:
+    pattern: /oauth/v2/register
+    defaults: { _controller: "BicloOAuth2ServerBundle:Security:register" }

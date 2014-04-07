@@ -2,12 +2,36 @@
 
 namespace Biclo\Bundle\OAuth2ServerBundle\Controller;
 
+use Biclo\Bundle\UserBundle\Entity\User;
+use Biclo\Bundle\OAuth2ServerBundle\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class SecurityController extends Controller
 {
+    public function registerAction(Request $request)
+    {
+        $user = new User();
+        $form = $this->createForm(new RegistrationType(), $user);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+            $password = $encoder->encodePassword($form->get('password')->getData(), $user->getSalt());
+            $user->setPassword($password);
+
+            $em = $this->get('doctrine')->getManager();
+            $em->persist($user);
+            $em->flush($user);
+
+            return $this->redirect($this->get('router')->generate('biclo_oauth2_server_security_login'));
+        }
+
+        return $this->render('BicloOAuth2ServerBundle:Security:register.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
     public function loginAction(Request $request)
     {
         $session = $request->getSession();

@@ -47,11 +47,8 @@ class User implements UserInterface
      */
     protected $deletedAt;
 
-    public function __construct($email, $username)
+    public function __construct()
     {
-        $this->email     = $email;
-        $this->username  = $username;
-        $this->salt      = md5($username.time());
         $this->createdAt = new \DateTime();
     }
 
@@ -68,6 +65,12 @@ class User implements UserInterface
     public function getUsername()
     {
         return $this->username;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        $this->salt = md5($this->username.time());
     }
 
     public function getEmail()

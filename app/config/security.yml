@@ -21,6 +21,7 @@ security:
         oauth_token:
             pattern:    ^/oauth/v2/token
             security:   false
+
         api:
             pattern: ^/api
             fos_oauth: true
@@ -33,3 +34,7 @@ security:
                 check_path: /oauth/v2/auth_login_check
                 login_path: /oauth/v2/auth_login
             anonymous: true
+
+    access_control:
+        - { path: ^/oauth/v2/auth_login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/oauth/v2/auth, roles: IS_AUTHENTICATED_FULLY }
