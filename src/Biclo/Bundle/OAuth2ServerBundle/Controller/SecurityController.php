@@ -5,6 +5,7 @@ namespace Biclo\Bundle\OAuth2ServerBundle\Controller;
 use Biclo\Bundle\UserBundle\Entity\User;
 use Biclo\Bundle\OAuth2ServerBundle\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
@@ -59,10 +60,27 @@ class SecurityController extends Controller
 
     public function loginCheckAction(Request $request)
     {
+        throw $this->createNotFoundException();
     }
 
     public function revokeAction(Request $request)
     {
+        $token = $request->query->get('token');
+        if (null === $token) {
+            throw $this->createAccessDeniedException('No token found in the request query parameters');
+        }
 
+        $doctrine = $this->get('doctrine');
+        $accessToken = $doctrine->getRepository('BicloOAuth2ServerBundle:AccessToken')->findOneByToken($token);
+
+        if (null === $accessToken) {
+            throw $this->createNotFoundException('Token not found');
+        }
+
+        $em = $doctrine->getManager();
+        $em->remove($accessToken);
+        $em->flush($accessToken);
+
+        return new JsonResponse(array('ok'));
     }
 }

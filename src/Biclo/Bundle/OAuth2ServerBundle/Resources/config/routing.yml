@@ -2,10 +2,6 @@ biclo_oauth2_server_default_user:
     pattern: /oauth/v2/user
     defaults: { _controller: "BicloOAuth2ServerBundle:Default:user" }
 
-biclo_oauth2_server_default_api:
-    pattern: /api
-    defaults: { _controller: "BicloOAuth2ServerBundle:Default:api" }
-
 biclo_oauth2_server_default_links:
     pattern: /links
     defaults: { _controller: "BicloOAuth2ServerBundle:Default:links" }
@@ -29,3 +25,7 @@ biclo_oauth2_server_security_login_check:
 biclo_oauth2_server_security_register:
     pattern: /oauth/v2/register
     defaults: { _controller: "BicloOAuth2ServerBundle:Security:register" }
+
+biclo_oauth2_server_security_revoke:
+    pattern: /oauth/v2/revoke
+    defaults: { _controller: "BicloOAuth2ServerBundle:Security:revoke" }
